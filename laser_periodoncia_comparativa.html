@@ -1,0 +1,332 @@
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Times New Roman', Times, serif; }
+
+  .container {
+    padding: 2rem 1rem;
+    font-family: 'Times New Roman', Times, serif;
+  }
+
+  .intro {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .intro h1 {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a2e5a;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+
+  .intro p {
+    font-size: 14px;
+    color: #555;
+    font-style: italic;
+  }
+
+  .badge-intro {
+    display: inline-block;
+    background: #e8f0fb;
+    color: #1a2e5a;
+    font-size: 12px;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+    font-family: 'Times New Roman', Times, serif;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .card {
+    border-radius: 18px;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s;
+  }
+
+  .card:hover { transform: translateY(-3px); }
+
+  .card-duro {
+    background: #eef4fb;
+    border: 2px solid #a8c4e8;
+  }
+
+  .card-blando {
+    background: #fff0f5;
+    border: 2px solid #f0b3c8;
+  }
+
+  .card-tag {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 10px;
+    font-family: Arial, sans-serif;
+  }
+
+  .tag-duro { background: #c2daff; color: #0d3a7a; }
+  .tag-blando { background: #ffd6e7; color: #8b1a4a; }
+
+  .card-title {
+    font-size: 17px;
+    font-weight: 700;
+    font-family: 'Times New Roman', Times, serif;
+    margin-bottom: 4px;
+  }
+
+  .title-duro { color: #1a3d6e; }
+  .title-blando { color: #8b1a4a; }
+
+  .card-subtitle {
+    font-size: 13px;
+    font-style: italic;
+    margin-bottom: 14px;
+    color: #666;
+    font-family: 'Times New Roman', Times, serif;
+  }
+
+  .mecanismo {
+    font-size: 13px;
+    border-radius: 10px;
+    padding: 10px 12px;
+    margin-bottom: 14px;
+    font-family: 'Times New Roman', Times, serif;
+    line-height: 1.6;
+  }
+
+  .mec-duro { background: #ddeeff; color: #1a3d6e; }
+  .mec-blando { background: #ffe4ef; color: #7a1040; }
+
+  .mec-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+    font-family: Arial, sans-serif;
+  }
+
+  .usos-title {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    font-family: Arial, sans-serif;
+    color: #444;
+  }
+
+  .usos-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 16px;
+  }
+
+  .usos-list li {
+    font-size: 13px;
+    font-family: 'Times New Roman', Times, serif;
+    padding: 5px 0;
+    border-bottom: 1px dashed #ccc;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #333;
+  }
+
+  .usos-list li:last-child { border-bottom: none; }
+
+  .dot-duro {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #3a7abf; flex-shrink: 0;
+  }
+
+  .dot-blando {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #d45c8a; flex-shrink: 0;
+  }
+
+  .secret-btn {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    transition: all 0.2s;
+    margin-top: 4px;
+  }
+
+  .btn-duro {
+    background: #1a3d6e;
+    color: #eef4fb;
+  }
+  .btn-duro:hover { background: #0d2a52; }
+
+  .btn-blando {
+    background: #8b1a4a;
+    color: #fff0f5;
+  }
+  .btn-blando:hover { background: #6a1238; }
+
+  .secret-panel {
+    display: none;
+    margin-top: 12px;
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 13px;
+    font-family: 'Times New Roman', Times, serif;
+    line-height: 1.6;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .secret-duro { background: #d0e8ff; color: #0d2a52; border: 1px solid #a8c4e8; }
+  .secret-blando { background: #ffdde9; color: #6a1238; border: 1px solid #f0b3c8; }
+
+  .secret-panel strong {
+    font-size: 14px;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .highlight-box {
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 13px;
+    font-style: italic;
+    font-family: 'Times New Roman', Times, serif;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .hl-duro { background: #b8d4f5; color: #0d2a52; }
+  .hl-blando { background: #f7c0d6; color: #6a1238; }
+
+  .star { font-size: 16px; }
+
+  .footer-note {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 12px;
+    font-style: italic;
+    color: #888;
+    font-family: 'Times New Roman', Times, serif;
+  }
+</style>
+
+<div class="container">
+  <h2 class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden">Comparativa interactiva de tipos de láser en periodoncia: tejidos duros vs tejidos blandos</h2>
+
+  <div class="intro">
+    <div class="badge-intro">Instrumental en Periodoncia · Tema 7</div>
+    <h1>EL LÁSER EN PERIODONCIA</h1>
+    <p>Introducidos en Odontología en 1990 · Distintas longitudes de onda según el tejido diana</p>
+  </div>
+
+  <div class="cards">
+
+    <!-- CARD TEJIDOS DUROS -->
+    <div class="card card-duro">
+      <div class="card-tag tag-duro">Tejidos Duros</div>
+      <div class="card-title title-duro">Láser ER-YAG</div>
+      <div class="card-subtitle">(Erbio)</div>
+
+      <div class="highlight-box hl-duro">
+        <span class="star">⭐</span>
+        <span>Elimina cálculo <em>subgingival</em> con precisión microexplosiva</span>
+      </div>
+
+      <div class="mecanismo mec-duro">
+        <div class="mec-label">⚙ Mecanismo de acción</div>
+        Ablación termodinámica basada en la <strong>alta absorción</strong> de su radiación por el agua superficial y los grupos –OH de la <em>hidroxiapatita</em>. Al evaporarse el agua, la presión intratisular genera <strong>microexplosiones</strong>.
+      </div>
+
+      <div class="usos-title">✦ Capacidades clínicas</div>
+      <ul class="usos-list">
+        <li><span class="dot-duro"></span>Remoción de cálculo dental</li>
+        <li><span class="dot-duro"></span>Elimina toxinas bacterianas</li>
+        <li><span class="dot-duro"></span>Efecto bactericida sobre periodontopatógenos</li>
+        <li><span class="dot-duro"></span>Promueve la regeneración periodontal</li>
+      </ul>
+
+      <button class="secret-btn btn-duro" onclick="toggleSecret('duro', this)">
+        🔬 ¡Revela el dato curioso!
+      </button>
+      <div class="secret-panel secret-duro" id="secret-duro">
+        <strong>💡 ¿Sabías esto?</strong>
+        La ablación del Er-YAG es tan selectiva que puede eliminar el cálculo sin dañar el cemento radicular subyacente — algo que los instrumentos mecánicos no siempre logran. Por eso se dice que "opera en el límite del tejido".
+      </div>
+    </div>
+
+    <!-- CARD TEJIDOS BLANDOS -->
+    <div class="card card-blando">
+      <div class="card-tag tag-blando">Tejidos Blandos</div>
+      <div class="card-title title-blando">Láser Nd-YAG &amp; CO₂</div>
+      <div class="card-subtitle">(Neodimio · Dióxido de Carbono)</div>
+
+      <div class="highlight-box hl-blando">
+        <span class="star">✂️</span>
+        <span>Bisturí de luz: corta <em>y</em> coagula al mismo tiempo</span>
+      </div>
+
+      <div class="mecanismo mec-blando">
+        <div class="mec-label">⚙ Mecanismo de acción</div>
+        Generan gran cantidad de calor → <strong>poder de corte y hemostático</strong> simultáneo. Eficaces en tejidos blandos periodontales. Requieren refrigeración por la alta producción térmica.
+      </div>
+
+      <div class="usos-title">✦ Aplicaciones clínicas</div>
+      <ul class="usos-list">
+        <li><span class="dot-blando"></span>Gingivectomías</li>
+        <li><span class="dot-blando"></span>Grabado ácido</li>
+        <li><span class="dot-blando"></span>Diagnóstico de caries</li>
+        <li><span class="dot-blando"></span>Hiperestesias y endodoncia</li>
+      </ul>
+
+      <button class="secret-btn btn-blando" onclick="toggleSecret('blando', this)">
+        🩸 ¡Revela el dato curioso!
+      </button>
+      <div class="secret-panel secret-blando" id="secret-blando">
+        <strong>💡 ¿Sabías esto?</strong>
+        El láser CO₂ actúa como un bisturí que sella los vasos a medida que corta, lo que minimiza el sangrado intraoperatorio — ¡casi como si la herida se cosiera sola! Esto lo hace ideal en pacientes con tendencia hemorrágica.
+      </div>
+    </div>
+
+  </div>
+
+  <p class="footer-note">* ABLACIÓN TÉRMICA = eliminación de tejidos mediante calor &nbsp;·&nbsp; Haz clic en cada botón para descubrir más</p>
+</div>
+
+<script>
+  function toggleSecret(tipo, btn) {
+    const panel = document.getElementById('secret-' + tipo);
+    const isOpen = panel.style.display === 'block';
+    panel.style.display = isOpen ? 'none' : 'block';
+    if (tipo === 'duro') {
+      btn.textContent = isOpen ? '🔬 ¡Revela el dato curioso!' : '🔼 Ocultar dato';
+    } else {
+      btn.textContent = isOpen ? '🩸 ¡Revela el dato curioso!' : '🔼 Ocultar dato';
+    }
+  }
+</script>
